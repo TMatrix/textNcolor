@@ -1,32 +1,29 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:text_n_color/main.dart';
+import 'package:text_n_color/models/backgroundColor.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Application started and text appeares',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that text is on screen.
+    expect(find.text('Hey There'), findsOneWidget);
   });
 
-  test('description', () {});
+  test('Color changes by method getNextColor()', () {
+    // Create instance of BackgroundColor
+    var backgroundColor = BackgroundColor();
+
+    // Get last item from color history
+    var previousColor = backgroundColor.lastAddedColor;
+
+    // Invoke next color function
+    backgroundColor.getNextColor();
+
+    // Verify that color changes
+    expect(backgroundColor.bgColor, isNot(equals(previousColor)));
+  });
 }
