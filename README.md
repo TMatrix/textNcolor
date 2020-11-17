@@ -1,5 +1,7 @@
 # Text'N'Color
 
+[Check this app now](https://tmatrix.github.io/textNcolor)
+
 ## Description
 
 Main purpose of this application to show text in the middle of the screen and after clicking anywhere on the screen to change a background color to a random color.
